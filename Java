@@ -1,0 +1,88 @@
+import java.util.*;
+class Node{
+    String data;
+    Node next;
+    public Node(String data)
+    {
+        this.data = data;
+    }
+}
+
+class LinkedList{
+    Node head;
+    
+    public void add(String data)
+    {
+        Node node = new Node(data);
+        if(head==null)
+        head = node;
+        else
+        {
+            Node n = head;
+            while(n.next!=null)
+            {
+                n=n.next;
+            }
+            n.next = node;
+        }
+    }
+    
+    public String get(int index)
+    {
+        Node node = head;
+        String x = "";
+        if(head.next==null)
+        x= head.data;
+        else{
+        for(int i=0;i<index;i++)
+        {
+            node=node.next;
+        }
+         x = node.data;
+        }
+        return x;
+    }
+    public int size()
+    {
+        Node n = head;
+        int count = 0;
+        while(n.next!=null)
+        {
+            n=n.next;
+            count++;
+        }
+        
+        return ++count;
+    }
+}
+
+public class Main{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        LinkedList list = new LinkedList();
+        String s = "";
+        for(int i=0;i<str.length();i++)
+        {
+            if((int)str.charAt(i)!=32)
+            s+=str.charAt(i);
+            else if((int)str.charAt(i)==32)
+            {
+                list.add(s);
+                s="";
+            }
+        }
+        // String a[] = str.split(" ");
+        // for(int i=0;i<a.length;i++)
+        // {
+        //     list.add(a[i]);
+        // }
+        for(int i=0;i<list.size();i++)
+        {
+            System.out.println(list.get(i));
+        }
+      //System.out.println(list);
+        
+    }
+}
